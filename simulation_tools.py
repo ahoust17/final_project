@@ -17,11 +17,47 @@ import numpy as np
 from math import sqrt, pi, sin, cos
 
 
+def plot_psuedo_density(xtal, name, kpts = (4,4,4)):
+    # Calculation
+    calc = GPAW(mode=PW(300),       # cutoff
+                kpts=kpts,     # k-points
+                txt=name + '.txt')  # output file
+
+    xtal.calc = calc
+    energy = xtal.get_potential_energy()
+    calc.write(name + '.gpw')
+    density = calc.get_pseudo_density()
+
+    # Plotting
+    X, Y, Z = np.mgrid[0:density.shape[0], 0:density.shape[1], 0:density.shape[2]]
+    theta = np.deg2rad(60)
+
+
+    fig = go.Figure(data=go.Volume(
+        x=X.flatten(), 
+        y=Y.flatten(), 
+        z=Z.flatten(),
+        value=density.flatten(),
+        #isomin=0.1,
+        #isomax=0.8,
+        opacity=0.1, # needs to be small to see through all surfaces
+        surface_count=17, # needs to be a large number for good volume rendering
+        ))
+
+    x = xtal.get_scaled_positions()[:,0] * density.shape[0]
+    y = xtal.get_scaled_positions()[:,1] * density.shape[1] 
+    z = xtal.get_scaled_positions()[:,2] * density.shape[2]
+
+    fig.add_scatter3d(x = x,y = y,z = z, mode = 'markers')
+
+    fig.show()
+
+
 def simulate_eels_ll(xtal, convergence_angle = 30, file_prefix = 'graphene'):
 
-# Part 1: Ground state calculation
+    # Part 1: Ground state calculation
 
-# Part 2: Find ground state density and diagonalize full hamiltonian
+    # Part 2: Find ground state density and diagonalize full hamiltonian
     calc = GPAW(mode=PW(500),
                 kpts=(6, 6, 3),
                 parallel={'domain': 1},
@@ -63,7 +99,7 @@ def simulate_eels_ll(xtal, convergence_angle = 30, file_prefix = 'graphene'):
 
 
 def setup_core_states(xtal):
-    setup_paths.insert(0, './core_states/')
+    setup_paths.insert(0, './')
 
     # Generate setups with 0.5, 1.0, 0.0 core holes in 1s
     elements = [sym for sym in np.unique(xtal.symbols)] #= ['O', 'C', 'N']
@@ -79,71 +115,45 @@ def setup_core_states(xtal):
                 g.run(name=name, **parameters[el])
 
 
-def simulate_eels_cl(): # xtal, file_prefix = 'graphene'
-    setup_paths.insert(0, './core_states/') # /Users/austin/gpaw-setups-0.9.20000
+def simulate_eels_cl(xtal, file_name, element):
+    setup_paths.insert(0, './')
 
-    a = 12.0  # use a large cell
-    d = 0.9575
-    t = pi / 180 * 104.51
-    atoms = Atoms('OH2',
-                [(0, 0, 0),
-                (d, 0, 0),
-                (d * cos(t), d * sin(t), 0)],
-                cell=(a, a, a))
-    atoms.center()
     calc = GPAW(nbands=-30,
                 h=0.2,
-                txt='h2o_xas.txt',
-                setups={'O': 'hch1s'})
-    # the number of unoccupied stated will determine how
-    # high you will get in energy
+                txt=str(file_name + '.txt'),
+                setups={element: 'hch1s'})
+    # the number of unoccupied stated will determine how high you will get in energy
+    xtal.calc = calc
+    e = xtal.get_potential_energy()
+    calc.write(str(file_name +'_xas.gpw'))
 
-    atoms.calc = calc
-    e = atoms.get_potential_energy()
-
-    calc.write('h2o_xas.gpw')
-
-
-    a = 12.0  # use a large cell
-
-    d = 0.9575
-    t = pi / 180 * 104.51
-    atoms = Atoms('OH2',
-                [(0, 0, 0),
-                (d, 0, 0),
-                (d * cos(t), d * sin(t), 0)],
-                cell=(a, a, a))
-    atoms.center()
-
+    # ground state calc
     calc1 = GPAW(h=0.2,
-                txt='h2o_gs.txt',
+                txt=str(file_name +'_gs.txt'),
                 xc='PBE')
-    atoms.calc = calc1
-    e1 = atoms.get_potential_energy() + calc1.get_reference_energy()
+    xtal.calc = calc1
+    e1 = xtal.get_potential_energy() + calc1.get_reference_energy()
 
+    # excited state calc
     calc2 = GPAW(h=0.2,
-                txt='h2o_exc.txt',
+                txt=str(file_name + '_exc.txt'),
                 xc='PBE',
                 charge=-1,
                 spinpol=True,
                 occupations=FermiDirac(0.0, fixmagmom=True),
                 setups={0: 'fch1s'})
-    atoms[0].magmom = 1
-    atoms.calc = calc2
-    e2 = atoms.get_potential_energy() + calc2.get_reference_energy()
-
-    with paropen('dks.result', 'w') as fd:
-        print('Energy difference:', e2 - e1, file=fd)
+    xtal[0].magmom = 1
+    xtal.calc = calc2
+    e2 = xtal.get_potential_energy() + calc2.get_reference_energy()
 
 
-    dks_energy = 532.774  # from dks calcualtion
-
-    calc = GPAW('h2o_xas.gpw')
+    calc = GPAW(str(file_name + '_xas.gpw'))
 
     xas = XAS(calc, mode='xas')
     x, y = xas.get_spectra(fwhm=0.5, linbroad=[4.5, -1.0, 5.0])
     x_s, y_s = xas.get_spectra(stick=True)
 
+    dks_energy = e2 - e1
     shift = dks_energy - x_s[0]  # shift the first transition
 
     y_tot = y[0] + y[1] + y[2]
@@ -151,5 +161,5 @@ def simulate_eels_cl(): # xtal, file_prefix = 'graphene'
 
     plt.plot(x + shift, y_tot)
     plt.bar(x_s + shift, y_tot_s, width=0.05)
-    plt.savefig('xas_h2o_spectrum.png')
+    plt.savefig(str('xas_' + file_name + '_spectrum.png'))
 

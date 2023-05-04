@@ -1,0 +1,327 @@
+
+  ___ ___ ___ _ _ _  
+ |   |   |_  | | | | 
+ | | | | | . | | | | 
+ |__ |  _|___|_____|  22.8.0
+ |___|_|             
+
+User:   austin@austinhoustonmacm1.nomads.utk.edu
+Date:   Thu May  4 18:41:35 2023
+Arch:   arm64
+Pid:    25491
+CWD:    /Users/austin/Desktop/dft_class/final_project
+Python: 3.8.16
+gpaw:   /Users/austin/tensorflow_env/env/lib/python3.8/site-packages/gpaw
+_gpaw:  /Users/austin/tensorflow_env/env/lib/python3.8/site-packages/
+        _gpaw.cpython-38-darwin.so
+ase:    /Users/austin/tensorflow_env/env/lib/python3.8/site-packages/ase (version 3.22.1)
+numpy:  /Users/austin/tensorflow_env/env/lib/python3.8/site-packages/numpy (version 1.23.2)
+scipy:  /Users/austin/tensorflow_env/env/lib/python3.8/site-packages/scipy (version 1.9.1)
+libxc:  6.1.0
+units:  Angstrom and eV
+cores: 1
+OpenMP: False
+OMP_NUM_THREADS: 1
+
+Input parameters:
+  h: 0.2
+  xc: PBE
+
+System changes: positions, numbers, cell, pbc, initial_charges, initial_magmoms 
+
+Initialize ...
+
+species:
+  C:
+    name: Carbon
+    id: 4aa54d4b901d75f77cc0ea3eec22967b
+    Z: 6.0
+    valence: 4
+    core: 2
+    charge: 0.0
+    file: /Users/austin/gpaw-setups-0.9.20000/C.PBE.gz
+    compensation charges: {type: gauss,
+                           rc: 0.20,
+                           lmax: 2}
+    cutoffs: {filter: 1.14,
+              core: 1.14}
+    valence states:
+      #              energy  rcut
+      - 2s(2.00)   -13.751   0.635
+      - 2p(2.00)    -5.284   0.635
+      -  s          13.461   0.635
+      -  p          21.927   0.635
+      -  d           0.000   0.635
+  
+    # Using partial waves for C as LCAO basis
+
+Reference energy: -4110.512462  # eV
+
+Spin-paired calculation
+
+Convergence criteria:
+ Maximum [total energy] change in last 3 cyles: 0.0005 eV / electron
+ Maximum integral of absolute [dens]ity change: 0.0001 electrons / valence electron
+ Maximum integral of absolute [eigenst]ate change: 4e-08 eV^2 / valence electron
+ Maximum number of scf [iter]ations: 333
+ (Square brackets indicate name in SCF output, whereas a 'c' in
+ the SCF output indicates the quantity has converged.)
+
+Symmetries present (total): 4
+
+  ( 1  0  0)  ( 1  0  0)  (-1  0  0)  (-1  0  0)
+  ( 0  1  0)  ( 0  1  0)  ( 0  1  0)  ( 0  1  0)
+  ( 0  0  1)  ( 0  0 -1)  ( 0  0  1)  ( 0  0 -1)
+
+1 k-point (Gamma)
+1 k-point in the irreducible part of the Brillouin zone
+       k-points in crystal coordinates                weights
+   0:     0.00000000    0.00000000    0.00000000          1/1
+
+Wave functions: Uniform real-space grid
+  Kinetic energy operator: 6*3+1=19 point O(h^6) finite-difference Laplacian
+  ScaLapack parameters: grid=1x1, blocksize=None
+  Wavefunction extrapolation:
+    Improved wavefunction reuse through dual PAW basis 
+
+Occupation numbers: Fermi-Dirac:
+  width: 0.1000  # eV
+ 
+
+Eigensolver
+   Davidson(niter=2) 
+
+Densities:
+  Coarse grid: 12*20*40 grid
+  Fine grid: 24*40*80 grid
+  Total Charge: 0.000000 
+
+Density mixing:
+  Method: separate
+  Backend: pulay
+  Linear mixing parameter: 0.05
+  old densities: 5
+  Damping of long wavelength oscillations: 50 
+
+Hamiltonian:
+  XC and Coulomb potentials evaluated on a 24*40*80 grid
+  Using the PBE Exchange-Correlation functional
+  Interpolation: tri-quintic (5. degree polynomial)
+  Poisson solver: FastPoissonSolver using
+    Stencil: 6*3+1=19 point O(h^6) finite-difference Laplacian
+    FFT axes: [0, 1, 2]
+    FST axes: []
+ 
+
+XC parameters: PBE with 2 nearest neighbor stencil
+
+Memory estimate:
+  Process memory now: 249.80 MiB
+  Calculator: 9.00 MiB
+    Density: 4.85 MiB
+      Arrays: 1.90 MiB
+      Localized functions: 2.22 MiB
+      Mixer: 0.73 MiB
+    Hamiltonian: 1.42 MiB
+      Arrays: 1.25 MiB
+      XC: 0.00 MiB
+      Poisson: 0.00 MiB
+      vbar: 0.18 MiB
+    Wavefunctions: 2.72 MiB
+      Arrays psit_nG: 1.03 MiB
+      Eigensolver: 1.41 MiB
+      Projections: 0.01 MiB
+      Projectors: 0.29 MiB
+
+Total number of cores used: 1
+
+Number of atoms: 4
+Number of atomic orbitals: 16
+Number of bands in calculation: 14
+Number of valence electrons: 16
+Bands to converge: occupied
+
+... initialized
+
+Initializing position-dependent things.
+
+Density initialized from atomic densities
+Creating initial wave functions:
+  14 bands from LCAO basis set
+
+    .-----.  
+   /|     |  
+  / |     |  
+ *  |     |  
+ |  |     |  
+ |  | C   |  
+ |  |     |  
+ |C |C    |  
+ C  |     |  
+ |  |     |  
+ |  .-----.  
+ | /     /   
+ |/     /    
+ *-----*     
+
+Positions:
+   0 C      0.000000    0.000000    4.000000    ( 0.0000,  0.0000,  0.0000)
+   1 C      0.000000    1.408735    4.000000    ( 0.0000,  0.0000,  0.0000)
+   2 C      1.220000    2.113102    4.000000    ( 0.0000,  0.0000,  0.0000)
+   3 C      1.220000    3.521837    4.000000    ( 0.0000,  0.0000,  0.0000)
+
+Unit cell:
+           periodic     x           y           z      points  spacing
+  1. axis:    yes    2.440000    0.000000    0.000000    12     0.2033
+  2. axis:    yes    0.000000    4.226204    0.000000    20     0.2113
+  3. axis:    yes    0.000000    0.000000    8.000000    40     0.2000
+
+  Lengths:   2.440000   4.226204   8.000000
+  Angles:   90.000000  90.000000  90.000000
+
+Effective grid spacing dv^(1/3) = 0.2048
+
+     iter     time        total  log10-change:
+                         energy  eigst   dens
+iter:   1 18:41:36   -32.362509
+iter:   2 18:41:36   -32.185550  +0.10  -0.69
+iter:   3 18:41:36   -29.274797  +0.39  -0.70
+iter:   4 18:41:36   -30.063827  +0.40  -1.28
+iter:   5 18:41:36   -30.241564  -0.48  -1.09
+iter:   6 18:41:36   -29.319477  -0.45  -1.03
+iter:   7 18:41:36   -29.323350  -1.01  -2.05
+iter:   8 18:41:36   -29.324951c -2.10  -2.26
+iter:   9 18:41:36   -29.326038c -2.46  -2.18
+iter:  10 18:41:36   -29.323539c -2.42  -2.26
+iter:  11 18:41:36   -29.323718c -2.59  -2.72
+iter:  12 18:41:36   -29.323553c -3.18  -2.74
+iter:  13 18:41:36   -29.323402c -3.52  -2.93
+iter:  14 18:41:37   -29.323406c -4.18  -3.54
+iter:  15 18:41:37   -29.323409c -4.13  -3.53
+iter:  16 18:41:37   -29.323414c -4.23  -3.51
+iter:  17 18:41:37   -29.323405c -5.24  -3.42
+iter:  18 18:41:37   -29.323404c -5.69  -3.57
+iter:  19 18:41:37   -29.323404c -5.95  -3.60
+iter:  20 18:41:37   -29.323403c -5.23  -3.82
+iter:  21 18:41:37   -29.323403c -6.22  -4.19c
+iter:  22 18:41:37   -29.323403c -6.79  -4.22c
+iter:  23 18:41:37   -29.323403c -5.93  -4.29c
+iter:  24 18:41:37   -29.323403c -6.14  -4.11c
+iter:  25 18:41:37   -29.323403c -6.39  -4.71c
+iter:  26 18:41:37   -29.323403c -7.02  -4.80c
+iter:  27 18:41:37   -29.323403c -7.44c -5.11c
+
+Converged after 27 iterations.
+
+Dipole moment: (-2.006012, -0.864673, 0.000001) |e|*Ang
+
+Energy contributions relative to reference atoms: (reference = -4110.512462)
+
+Kinetic:        +45.851579
+Potential:      -37.195433
+External:        +0.000000
+XC:             -38.686098
+Entropy (-ST):   -0.000000
+Local:           +0.706549
+--------------------------
+Free energy:    -29.323403
+Extrapolated:   -29.323403
+
+ Band  Eigenvalues  Occupancy
+    0    -19.18934    2.00000
+    1    -13.51646    2.00000
+    2    -13.16289    2.00000
+    3     -7.35780    2.00000
+    4     -5.68769    2.00000
+    5     -2.48581    2.00000
+    6     -2.07128    2.00000
+    7     -1.83211    2.00000
+    8      2.11610    0.00000
+    9      3.10752    0.00000
+   10      5.83765    0.00000
+   11      8.36625    0.00000
+   12      8.99764    0.00000
+   13      9.24289    0.00000
+
+Fermi level: 0.14507
+
+Gap: 3.948 eV
+Transition (v -> c):
+  (s=0, k=0, n=7, [0.00, 0.00, 0.00]) -> (s=0, k=0, n=8, [0.00, 0.00, 0.00])
+Timing:                              incl.     excl.
+-----------------------------------------------------------
+Hamiltonian:                         0.048     0.000   0.0% |
+ Atomic:                             0.034     0.000   0.0% |
+  XC Correction:                     0.034     0.034   0.6% |
+ Calculate atomic Hamiltonians:      0.001     0.001   0.0% |
+ Communicate:                        0.000     0.000   0.0% |
+ Hartree integrate/restrict:         0.000     0.000   0.0% |
+ Initialize Hamiltonian:             0.000     0.000   0.0% |
+ Poisson:                            0.005     0.000   0.0% |
+  Communicate from 1D:               0.001     0.001   0.0% |
+  Communicate from 2D:               0.001     0.001   0.0% |
+  Communicate to 1D:                 0.000     0.000   0.0% |
+  Communicate to 2D:                 0.001     0.001   0.0% |
+  FFT 1D:                            0.001     0.001   0.0% |
+  FFT 2D:                            0.002     0.002   0.0% |
+ XC 3D grid:                         0.008     0.008   0.1% |
+ vbar:                               0.000     0.000   0.0% |
+LCAO initialization:                 0.077     0.005   0.1% |
+ LCAO eigensolver:                   0.040     0.000   0.0% |
+  Calculate projections:             0.000     0.000   0.0% |
+  DenseAtomicCorrection:             0.000     0.000   0.0% |
+  Distribute overlap matrix:         0.000     0.000   0.0% |
+  Orbital Layouts:                   0.000     0.000   0.0% |
+  Potential matrix:                  0.040     0.040   0.7% |
+ LCAO to grid:                       0.014     0.014   0.2% |
+ Set positions (LCAO WFS):           0.018     0.003   0.1% |
+  Basic WFS set positions:           0.000     0.000   0.0% |
+  Basis functions set positions:     0.000     0.000   0.0% |
+  P tci:                             0.004     0.004   0.1% |
+  ST tci:                            0.005     0.005   0.1% |
+  mktci:                             0.005     0.005   0.1% |
+SCF-cycle:                           1.719     0.008   0.1% |
+ Davidson:                           0.444     0.195   3.2% ||
+  Apply hamiltonian:                 0.036     0.036   0.6% |
+  Subspace diag:                     0.058     0.001   0.0% |
+   calc_h_matrix:                    0.045     0.009   0.1% |
+    Apply hamiltonian:               0.036     0.036   0.6% |
+   diagonalize:                      0.004     0.004   0.1% |
+   rotate_psi:                       0.008     0.008   0.1% |
+  calc. matrices:                    0.122     0.050   0.8% |
+   Apply hamiltonian:                0.072     0.072   1.2% |
+  diagonalize:                       0.019     0.019   0.3% |
+  rotate_psi:                        0.014     0.014   0.2% |
+ Density:                            0.039     0.000   0.0% |
+  Atomic density matrices:           0.005     0.005   0.1% |
+  Mix:                               0.025     0.025   0.4% |
+  Multipole moments:                 0.001     0.001   0.0% |
+  Pseudo density:                    0.007     0.002   0.0% |
+   Symmetrize density:               0.005     0.005   0.1% |
+ Hamiltonian:                        1.227     0.001   0.0% |
+  Atomic:                            0.889     0.007   0.1% |
+   XC Correction:                    0.882     0.882  14.4% |-----|
+  Calculate atomic Hamiltonians:     0.014     0.014   0.2% |
+  Communicate:                       0.000     0.000   0.0% |
+  Hartree integrate/restrict:        0.011     0.011   0.2% |
+  Poisson:                           0.113     0.007   0.1% |
+   Communicate from 1D:              0.012     0.012   0.2% |
+   Communicate from 2D:              0.010     0.010   0.2% |
+   Communicate to 1D:                0.010     0.010   0.2% |
+   Communicate to 2D:                0.016     0.016   0.3% |
+   FFT 1D:                           0.013     0.013   0.2% |
+   FFT 2D:                           0.045     0.045   0.7% |
+  XC 3D grid:                        0.195     0.195   3.2% ||
+  vbar:                              0.003     0.003   0.1% |
+ Orthonormalize:                     0.001     0.000   0.0% |
+  calc_s_matrix:                     0.000     0.000   0.0% |
+  inverse-cholesky:                  0.000     0.000   0.0% |
+  projections:                       0.001     0.001   0.0% |
+  rotate_psi_s:                      0.000     0.000   0.0% |
+Set symmetry:                        0.001     0.001   0.0% |
+Other:                               4.262     4.262  69.8% |---------------------------|
+-----------------------------------------------------------
+Total:                                         6.107 100.0%
+
+Memory usage: 286.70 MiB
+Date: Thu May  4 18:41:42 2023

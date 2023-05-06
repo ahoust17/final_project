@@ -1,0 +1,76 @@
+Reading ground state calculation:
+  graphene.gpw
+Minimum eigenvalue:    -19.547 eV
+Maximum eigenvalue:     42.417 eV
+Number of completely filled bands: 7
+Number of non-empty bands: 9
+Total number of bands: 60
+Number of blocks: 1
+NonLinearFrequencyDescriptor(from 0.000 to 62.050 eV, 1739 points)
+Nonperiodic BCs:  [False False False]
+Using integration method: PointIntegrator
+Thu May  4 21:52:43 2023
+Called response.chi0.calculate with
+    q_c: [0.100000, 0.000000, 0.000000]
+    Number of frequency points: 1739
+    Planewave cutoff: 100.000000
+    Number of spins: 1
+    Number of bands: 60
+    Number of kpoints: 2800
+    Number of irredicible kpoints: 400
+    Number of planewaves: 184
+    Broadening (eta): 0.200000
+    world.size: 1
+    kncomm.size: 1
+    blockcomm.size: 1
+    Number of completely occupied states: 7
+    Number of partially occupied states: 9
+
+    Memory estimate of potentially large arrays:
+        chi0_wGG: 898.370117 M / cpu
+        Occupied states: 1.937988 M / cpu
+        Memory usage before allocation: 4351.984375 M / cpu
+
+Point group included. Time reversal included. Disabled non-symmorphic symmetries. Found 4 allowed symmetries. 800 groups of equivalent kpoints. 71.42857142857143% reduction. 
+
+  ( 1  0  0)  ( 1  0  0)  ( 1  0  0)  ( 1  0  0)
+  ( 0  1  0)  ( 0  1  0)  ( 0 -1  0)  ( 0 -1  0)
+  ( 0  0  1)  ( 0  0 -1)  ( 0  0 -1)  ( 0  0  1)
+
+Integrating response function.
+Integral kind: spectral function
+Distributing domain [800, 1] over 1 process
+Number of blocks: 1
+81.23855590820312s |----------------------------------------| Time: 70.365s
+Timing:                                    incl.     excl.
+-----------------------------------------------------------------
+Calculate CHI_0:                         107.213    15.371  14.3% |-----|
+ CHI_0 spectral function update (new):    26.979    26.979  25.1% |---------|
+ Get eigenvalues:                          0.075     0.075   0.1% |
+ Get kpoints:                              0.010     0.001   0.0% |
+  Group kpoints:                           0.003     0.003   0.0% |
+  Initialize:                              0.006     0.003   0.0% |
+   Analyze:                                0.003     0.000   0.0% |
+    Group kpoints:                         0.003     0.003   0.0% |
+   Analyze symmetries.:                    0.000     0.000   0.0% |
+ Get matrix element:                      43.108     0.423   0.4% |
+  Get kpoint pair:                         6.535     0.005   0.0% |
+   fft indices:                            0.009     0.009   0.0% |
+   get k-points:                           6.522     0.003   0.0% |
+    Get a k-point:                         6.518     0.400   0.4% |
+     Load projections:                     0.057     0.057   0.1% |
+     load wfs:                             6.061     6.061   5.6% |-|
+  Group kpoints:                           0.027     0.027   0.0% |
+  get_pair_density:                       36.122     0.059   0.1% |
+   conj:                                   0.070     0.070   0.1% |
+   paw:                                   35.993     1.599   1.5% ||
+    Calculate pair-densities:             34.394     4.217   3.9% |-|
+     fft:                                 29.207    29.207  27.2% |----------|
+     gemm:                                 0.970     0.970   0.9% |
+ Hilbert transform:                       21.611    21.611  20.1% |-------|
+ Initialize PAW corrections:               0.058     0.058   0.1% |
+Read ground state:                         0.254     0.254   0.2% |
+Other:                                     0.070     0.070   0.1% |
+-----------------------------------------------------------------
+Total:                                             107.537 100.0%
+

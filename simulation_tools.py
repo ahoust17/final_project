@@ -17,6 +17,27 @@ import numpy as np
 from math import sqrt, pi, sin, cos
 
 
+def kpt_convergence(xtal, k_points = [2,4,6,8], cutoffs = [250, 300, 350]):
+    # supply k_points and cutoff as arrays
+    k_test_energy = []
+    k_list, cutoff_list = [],[]
+
+    for k in k_points:
+        for c in cutoffs:
+            kpts = (k,k,k)
+            name = str('k_test' + str(k))
+
+            calc = GPAW(mode=PW(c), kpts=kpts, txt=str(name) + '.txt') 
+            xtal.calc = calc
+            e = xtal.get_potential_energy()
+
+            k_test_energy.append(e)
+            k_list.append(k)
+            cutoff_list.append(c)
+
+    return k_test_energy, k_list, cutoff_list
+
+
 def plot_psuedo_density(xtal, name, kpts = (4,4,4)):
     # Calculation
     calc = GPAW(mode=PW(300),       # cutoff
@@ -51,6 +72,7 @@ def plot_psuedo_density(xtal, name, kpts = (4,4,4)):
     fig.add_scatter3d(x = x,y = y,z = z, mode = 'markers')
 
     fig.show()
+    #fig.write_image(str("images/" + name + ".png"))
 
 
 def simulate_eels_ll(xtal, convergence_angle = 30, file_prefix = 'graphene'):

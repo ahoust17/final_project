@@ -513,3 +513,69 @@ Fermi level: -0.81409
 Gap: 0.302 eV
 Transition (v -> c):
   (s=0, k=5, n=511, [0.38, 0.12, 0.38]) -> (s=0, k=5, n=512, [0.38, 0.12, 0.38])
+Timing:                              incl.     excl.
+-----------------------------------------------------------
+Hamiltonian:                        10.974     0.029   0.0% |
+ Atomic:                             0.688     0.012   0.0% |
+  XC Correction:                     0.676     0.676   0.0% |
+ Calculate atomic Hamiltonians:      9.912     9.912   0.0% |
+ Communicate:                        0.000     0.000   0.0% |
+ Initialize Hamiltonian:             0.002     0.002   0.0% |
+ Poisson:                            0.030     0.030   0.0% |
+ XC 3D grid:                         0.312     0.312   0.0% |
+LCAO initialization:              1322.384     0.037   0.0% |
+ LCAO eigensolver:                  21.863     0.028   0.0% |
+  Calculate projections:             4.650     4.650   0.0% |
+  DenseAtomicCorrection:             6.969     6.969   0.0% |
+  Distribute overlap matrix:         0.059     0.059   0.0% |
+  Orbital Layouts:                   6.841     6.841   0.0% |
+  Potential matrix:                  2.839     2.839   0.0% |
+  Sum over cells:                    0.477     0.477   0.0% |
+ LCAO to grid:                    1287.930  1287.930   2.1% ||
+ Set positions (LCAO WFS):          12.554     7.593   0.0% |
+  Basic WFS set positions:           0.016     0.016   0.0% |
+  Basis functions set positions:     0.001     0.001   0.0% |
+  P tci:                             4.216     4.216   0.0% |
+  ST tci:                            0.653     0.653   0.0% |
+  mktci:                             0.075     0.075   0.0% |
+PWDescriptor:                        0.081     0.081   0.0% |
+SCF-cycle:                       34809.355     0.506   0.0% |
+ Davidson:                       33362.234 18491.557  30.0% |-----------|
+  Apply H:                         490.859   474.105   0.8% |
+   HMM T:                           16.755    16.755   0.0% |
+  Subspace diag:                  3542.639     0.289   0.0% |
+   calc_h_matrix:                 1732.441   914.656   1.5% ||
+    Apply H:                       817.784   477.798   0.8% |
+     HMM T:                        339.987   339.987   0.6% |
+   diagonalize:                     27.023    27.023   0.0% |
+   rotate_psi:                    1782.886  1782.886   2.9% ||
+  calc. matrices:                 7087.361  6076.387   9.9% |---|
+   Apply H:                       1010.975   942.475   1.5% ||
+    HMM T:                          68.500    68.500   0.1% |
+  diagonalize:                     361.447   361.447   0.6% |
+  rotate_psi:                     3388.369  3388.369   5.5% |-|
+ Density:                          859.756     0.009   0.0% |
+  Atomic density matrices:          22.488    22.488   0.0% |
+  Mix:                             326.462   326.462   0.5% |
+  Multipole moments:                 0.136     0.136   0.0% |
+  Pseudo density:                  510.661   510.399   0.8% |
+   Symmetrize density:               0.262     0.262   0.0% |
+ Hamiltonian:                      189.535     0.655   0.0% |
+  Atomic:                           10.553     0.277   0.0% |
+   XC Correction:                   10.276    10.276   0.0% |
+  Calculate atomic Hamiltonians:   174.476   174.476   0.3% |
+  Communicate:                       0.001     0.001   0.0% |
+  Poisson:                           1.006     1.006   0.0% |
+  XC 3D grid:                        2.843     2.843   0.0% |
+ Orthonormalize:                   397.324     0.044   0.0% |
+  calc_s_matrix:                    29.415    29.415   0.0% |
+  inverse-cholesky:                  0.846     0.846   0.0% |
+  projections:                     312.684   312.684   0.5% |
+  rotate_psi_s:                     54.335    54.335   0.1% |
+Set symmetry:                        0.002     0.002   0.0% |
+Other:                           25441.230 25441.230  41.3% |----------------|
+-----------------------------------------------------------
+Total:                                     61584.025 100.0%
+
+Memory usage: 3.63 GiB
+Date: Sat May  6 06:34:10 2023

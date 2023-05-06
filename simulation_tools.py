@@ -182,6 +182,6 @@ def simulate_eels_cl(xtal, file_name, element):
     y_tot_s = y_s[0] + y_s[1] + y_s[2]
 
     plt.plot(x + shift, y_tot)
-    plt.bar(x_s + shift, y_tot_s, width=0.05)
+    #plt.bar(x_s + shift, y_tot_s, width=0.05)
     plt.savefig(str('xas_' + file_name + '_spectrum.png'))
 
